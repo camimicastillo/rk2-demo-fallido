@@ -16,6 +16,7 @@ plt.clf()
 
 t = np.linspace(0, 5 * 2 * np.pi / w, 400)
 
+
 plt.plot(t, A * np.sin(w * t))
 
 
@@ -31,10 +32,16 @@ def get_k2(phi_n, w_n, h, f):
     f_eval = f(phi_n + k1[0]/2, w_n + k1[1]/2)
     return h * f_eval[0], h * f_eval[1]
 
+#En la siguiente funcion habian *h que sobraban, ya que get_k1 y get_k2
+#ya consideraba esa multiplicacion.
 def rk2_step(phi_n, w_n, h, f):
     k2 = get_k2(phi_n, w_n, h, f)
-    phi_n1 = phi_n + k2[0] * h
-    w_n1 = w_n + k2[1] * h
+
+    #phi_n1 = phi_n + k2[0]*h
+    #w_n1 = w_n + k2[1]*h
+
+    phi_n1 = phi_n + k2[0]
+    w_n1 = w_n + k2[1]
     return phi_n1, w_n1
 
 N_steps = 40000
@@ -48,11 +55,9 @@ for i in range(1, N_steps):
     phi[i], w[i] = rk2_step(phi[i-1], w[i-1], h, f)
 
 
-
 t_rk = [h * i for i in range(N_steps)]
 
 plt.plot(t_rk, phi, 'g')
-
 
 
 

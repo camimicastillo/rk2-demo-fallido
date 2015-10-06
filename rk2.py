@@ -16,8 +16,10 @@ plt.clf()
 
 t = np.linspace(0, 5 * 2 * np.pi / w, 400)
 
+#Se cambia de sen a cos, ya que la funcion analitica no correspondia a sen
 
-plt.plot(t, A * np.sin(w * t))
+#plt.plot(t, A * np.sen(w * t))
+plt.plot(t, A * np.cos(w * t))
 
 
 def f(phi, w):
